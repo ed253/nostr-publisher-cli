@@ -10,12 +10,12 @@ Compatible with [nostr-multimedia](https://github.com/ed253/nostr-multimedia) to
 
 ## Usage
 
-- To publish a note, use ´--key xxxxx´ or set ´{ "key": "xxxxx" }´ in nostr-publisher-cli.conf
+- To publish a note, use `--key xxxxx` or set `{ "key": "xxxxx" }` in nostr-publisher-cli.conf
 - Use `--dry-run` to return the event JSON, without broadcasting it to a relay
 
 ### Generate a random key
 
-´nostr-publisher-cli --random-key´
+`nostr-publisher-cli --random-key`
 
 Returns:
 
@@ -23,7 +23,7 @@ Returns:
 
 ### Submit a raw request
 
-´nostr-publisher-cli --relay relay.nostr.band --fetch raw --content '[REQ, "MyQuery", { "ids": "[...]" }]'´
+`nostr-publisher-cli --relay relay.nostr.band --fetch raw --content '[REQ, "MyQuery", { "ids": "[...]" }]'`
 
 Returns:
 
@@ -31,7 +31,7 @@ Returns:
 
 ### Submit a raw event
 
-´nostr-publisher-cli --relay relay.nostr.band --publish raw --content '["EVENT", { "id": "xxxxx", "kind": 1, "pubkey": "xxxxx", "tags": ["#e", "testing"], "content": "Hello world", "created_at": 123456789, "sig": "xxxxx" }]'´
+`nostr-publisher-cli --relay relay.nostr.band --publish raw --content '["EVENT", { "id": "xxxxx", "kind": 1, "pubkey": "xxxxx", "tags": ["#e", "testing"], "content": "Hello world", "created_at": 123456789, "sig": "xxxxx" }]'`
 
 Returns:
 
@@ -39,7 +39,7 @@ Returns:
 
 ### Hash and sign event JSON
 
-´nostr-publisher-cli --sign '{ "id": 0, "kind": 1, "pubkey": "xxxxx", "tags": ["#e", "testing"], "content": "Hello world", "created_at": 123456789 }' --key xxxxx´
+`nostr-publisher-cli --sign '{ "id": 0, "kind": 1, "pubkey": "xxxxx", "tags": ["#e", "testing"], "content": "Hello world", "created_at": 123456789 }' --key xxxxx`
 
 Returns:
 
@@ -47,7 +47,7 @@ The signed event (not broadcasted)
 
 ### Verify event JSON
 
-´nostr-publisher-cli --verify '{ "id": "xxxxx", "kind": 1, "pubkey": "xxxxx", "tags": ["#e", "testing"], "content": "Hello world", "created_at": 123456789, "sig": "xxxxx" }'´
+`nostr-publisher-cli --verify '{ "id": "xxxxx", "kind": 1, "pubkey": "xxxxx", "tags": ["#e", "testing"], "content": "Hello world", "created_at": 123456789, "sig": "xxxxx" }'`
 
 Returns:
 
@@ -55,45 +55,45 @@ Returns:
 
 ### Generate a bech32 address
 
-´nostr-publisher-cli --bech32 --prefix note --hex xxxxx´
+`nostr-publisher-cli --bech32 --prefix note --hex xxxxx`
 
 Or
 
-´nostr-publisher-cli --bech32 --prefix naddr --author xxxxx --slug "my-blog-post" --kind 30023´
+`nostr-publisher-cli --bech32 --prefix naddr --author xxxxx --slug "my-blog-post" --kind 30023`
 
 ### Fetch a note by ID
 
-´nostr-publisher-cli --relay relay.nostr.band --fetch notes --note note123456789´
+`nostr-publisher-cli --relay relay.nostr.band --fetch notes --note note123456789`
 
 ### Fetch comments by note
 
-´nostr-publisher-cli --relay relay.nostr.band --fetch comments --note note123456789´
+`nostr-publisher-cli --relay relay.nostr.band --fetch comments --note note123456789`
 
 ### Fetch notes by author
 
-´nostr-publisher-cli --relay relay.nostr.band --fetch notes --author npub123456789 --since 123456789 --limit 10´
+`nostr-publisher-cli --relay relay.nostr.band --fetch notes --author npub123456789 --since 123456789 --limit 10`
 
 ### Fetch notes by search terms
 
-´nostr-publisher-cli --relay relay.nostr.band --fetch search --terms "Bitcoin News" --limit 50´
+`nostr-publisher-cli --relay relay.nostr.band --fetch search --terms "Bitcoin News" --limit 50`
 
 Note: Not all relays support search.
 
 ### Publish a text note (Kind 1)
 
-´nostr-publisher-cli --relay relay.nostr.band --publish text --content "Hello world"´
+`nostr-publisher-cli --relay relay.nostr.band --publish text --content "Hello world"`
 
 Or
 
-´nostr-publisher-cli --relay relay.nostr.band --publish text --file my_post.txt´
+`nostr-publisher-cli --relay relay.nostr.band --publish text --file my_post.txt`
 
 ### Publish a comment (Kind 1, #e tag)
 
-´nostr-publisher-cli --relay relay.nostr.band --publish comment --note note123456789 --content "Thanks"´
+`nostr-publisher-cli --relay relay.nostr.band --publish comment --note note123456789 --content "Thanks"`
 
 ### Publish a long form post (Kind 30023)
 
-´nostr-publisher-cli --relay relay.nostr.band --publish article --slug "my-blog-post" --title "My Blog Post" --file blog_post.md´
+`nostr-publisher-cli --relay relay.nostr.band --publish article --slug "my-blog-post" --title "My Blog Post" --file blog_post.md`
 
 View your article in your browser with nostr-multimedia:
 
@@ -101,7 +101,7 @@ https://nostr-multimedia.eu-4.evennode.com/markdown/nos.lol/naddr1qqfxy6t5vdhkjm
 
 ### Upload a HTML page
 
-´nostr-publisher-cli --relay relay.nostr.band --publish html --slug "my-webpage" --title "My Webpage" --file my_webpage.html´
+`nostr-publisher-cli --relay relay.nostr.band --publish html --slug "my-webpage" --title "My Webpage" --file my_webpage.html`
 
 View your HTML page in your browser with nostr-multimedia:
 
@@ -111,7 +111,7 @@ Note: Currently there is no HTML page kind. Kind 30023 is used for now (so that 
 
 ### Upload a file, such as an image
 
-´nostr-publisher-cli --relay relay.nostr.band --publish file --file my_image.png´
+`nostr-publisher-cli --relay relay.nostr.band --publish file --file my_image.png`
 
 Files are automatically converted to base64 data URIs. 
 
@@ -133,7 +133,7 @@ Note: The max content size for Kind 1 notes is usually 64 KB.
 
 ### Delete a note
 
-´nostr-publisher-cli --relay relay.nostr.band --publish delete --note note123456789´
+`nostr-publisher-cli --relay relay.nostr.band --publish delete --note note123456789`
 
 Relays may or may not honor the deletion.
 
