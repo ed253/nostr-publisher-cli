@@ -1,0 +1,38 @@
+{
+  "name": "nostr-publisher-cli",
+  "version": "1.0.0",
+  "description": "Fetch and publish notes from Nostr using the commandline",
+  "license": "MIT",
+  "author": "ed253",
+  "homepage": "https://github.com/ed253/nostr-publisher-cli",
+  "funding": [
+    {
+      "type": "bitcoin",
+      "url": "https://coinos.io/ed253/receive"
+    },
+    {
+      "type": "monero",
+      "url": "https://sendxmr.com/@ed253"
+    }
+  ],
+  "type": "module",
+  "main": "cli.js",
+  "bin": {
+    "nostr-publisher-cli": "./cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node cli.js"
+  },
+  "dependencies": {
+    "@noble/hashes": "^2.0.1",
+    "@noble/secp256k1": "^3.0.0",
+    "@scure/base": "^2.0.0",
+    "file-type": "^21.1.1",
+    "fs": "^0.0.1-security",
+    "mime": "^4.1.0",
+    "minimist": "^1.2.8",
+    "node-tlv": "^1.5.14",
+    "ws": "^8.18.3"
+  }
+}
