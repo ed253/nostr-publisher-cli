@@ -105,7 +105,7 @@ https://nostr-multimedia.eu-4.evennode.com/markdown/nos.lol/naddr1qqfxy6t5vdhkjm
 
 View your HTML page in your browser with nostr-multimedia:
 
-`https://nostr-multimedia.eu-4.evennode.com/html/nos.lol/naddr1qq9xummnw3ez6urpvajsygqaqsucv8hycsgugstly02jpz9u9zlrxeayad0syx9dk8cun0au8gpsgqqqw4rsz30n4m/`
+https://nostr-multimedia.eu-4.evennode.com/html/nos.lol/naddr1qq9xummnw3ez6urpvajsygqaqsucv8hycsgugstly02jpz9u9zlrxeayad0syx9dk8cun0au8gpsgqqqw4rsz30n4m/
 
 Note: Currently there is no HTML page kind. Kind 30023 is used for now (so that you can edit your HTML page later). This is not optimal because it could spam blogging clients.
 
