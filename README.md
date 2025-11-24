@@ -97,7 +97,7 @@ Or
 
 View your article in your browser with nostr-multimedia:
 
-https://nostr-multimedia.eu-4.evennode.com/markdown/nos.lol/naddr1qqfxy6t5vdhkjm3dwa5xjar9wpshqetjqgsp6ppesc0wf3q3c3qh7g74yzytc297xdn6f66lqgv2mv03exlmcwsrqsqqqa28dd8gcl
+https://nostr-multimedia.netlify.app/markdown/nos.lol/naddr1qqfxy6t5vdhkjm3dwa5xjar9wpshqetjqgsp6ppesc0wf3q3c3qh7g74yzytc297xdn6f66lqgv2mv03exlmcwsrqsqqqa28dd8gcl
 
 ### Upload a HTML page
 
@@ -105,7 +105,7 @@ https://nostr-multimedia.eu-4.evennode.com/markdown/nos.lol/naddr1qqfxy6t5vdhkjm
 
 View your HTML page in your browser with nostr-multimedia:
 
-https://nostr-multimedia.eu-4.evennode.com/html/nos.lol/naddr1qq9xummnw3ez6urpvajsygqaqsucv8hycsgugstly02jpz9u9zlrxeayad0syx9dk8cun0au8gpsgqqqw4rsz30n4m/
+https://nostr-multimedia.netlify.app/html/nos.lol/naddr1qq9xummnw3ez6urpvajsygqaqsucv8hycsgugstly02jpz9u9zlrxeayad0syx9dk8cun0au8gpsgqqqw4rsz30n4m/
 
 Note: Currently there is no HTML page kind. Kind 30023 is used for now (so that you can edit your HTML page later). This is not optimal because it could spam blogging clients.
 
@@ -117,15 +117,15 @@ Files are automatically converted to base64 data URIs.
 
 View your file in your browser with nostr-multimedia:
 
-https://nostr-multimedia.eu-4.evennode.com/file/nos.lol/note1wqvk97jzp5nqxt79vy3rj3ts8pxp7z4sqhznh6sjj0txjjcdj28qrlp7m7/image.png
+https://nostr-multimedia.netlify.app/file/nos.lol/note1wqvk97jzp5nqxt79vy3rj3ts8pxp7z4sqhznh6sjj0txjjcdj28qrlp7m7/image.png
 
 Display an image in a Nostr note using Markdown:
 
-`![https://nostr-multimedia.eu-4.evennode.com/file/nos.lol/note1wqvk97jzp5nqxt79vy3rj3ts8pxp7z4sqhznh6sjj0txjjcdj28qrlp7m7/image.png](My image)`
+`![https://nostr-multimedia.netlify.app/file/nos.lol/note1wqvk97jzp5nqxt79vy3rj3ts8pxp7z4sqhznh6sjj0txjjcdj28qrlp7m7/image.png](My image)`
 
 Display an image on your website using HTML:
 
-`<img src="https://nostr-multimedia.eu-4.evennode.com/file/nos.lol/note1wqvk97jzp5nqxt79vy3rj3ts8pxp7z4sqhznh6sjj0txjjcdj28qrlp7m7/image.png" alt="My image">`
+`<img src="https://nostr-multimedia.netlify.app/file/nos.lol/note1wqvk97jzp5nqxt79vy3rj3ts8pxp7z4sqhznh6sjj0txjjcdj28qrlp7m7/image.png" alt="My image">`
 
 Note: Currently there is no base64 file kind. Kind 1 is used for now. This is not optimal because it could spam social media clients.
 
