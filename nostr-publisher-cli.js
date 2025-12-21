@@ -2,6 +2,7 @@
 
 import minimist from "minimist"
 import mime from "mime";
+import path from "path";
 import TLV from "node-tlv";
 import * as secp from "@noble/secp256k1";
 import { sha256 } from "@noble/hashes/sha2.js";
@@ -229,6 +230,39 @@ function hexToBech32(params) {
 
 }
 
+async function nip05ToHex(author) {
+
+  if(!author.includes("@")) {
+    return bech32ToHex(author);
+  }
+
+  var pieces = author.split("@");
+  var name = pieces[0];
+  var domain = "https://" + pieces[1];
+  
+  try {
+    var validUrl = new URL(domain);
+  } catch(err) {
+    return author;
+  }
+
+  var url = domain + "/.well-known/nostr.json?name=" + name;
+
+  try {
+    var content = await fetch(url);
+    var json = await content.json();
+  } catch(err) {
+    return author;
+  }
+
+  if(json["names"] && json["names"][name]) {
+    var author = json["names"][name];
+  }
+
+  return author;
+
+}
+
 function fileToUTF8(filename) {
 
   try {
@@ -333,6 +367,10 @@ function constructQuery(params) {
       filter.since = params.since;
     }
 
+    if(params.until) {
+      filter.until = params.until;
+    }
+
     var query = ["REQ", "fetchNotesByAuthor", filter];
 
   }
@@ -353,6 +391,10 @@ function constructQuery(params) {
 
     if(params.since) {
       filter.since = params.since;
+    }
+
+    if(params.until) {
+      filter.until = params.until;
     }
 
     var query = ["REQ", "fetchNotesBySearchTerms", filter];
@@ -434,23 +476,14 @@ async function constructNote(params) {
 
   }
 
-  if(params.publish == "html") {
+  if(params.publish == "web") {
 
-    event.kind = 30023;
+    event.kind = 30080;
 
     event.tags = [
-      ["d", params.slug],
-      ["title", params.title],
+      ["d", path.basename(params.file)],
       ["published_at", ""+Math.floor(Date.now() / 1000)],
     ];
-
-    event.content = fileToUTF8(params.file);
-
-  }
-
-  if(params.publish == "file") {
-
-    event.kind = 1;
 
     event.content = await fileToBase64(params.file);
 
@@ -570,6 +603,10 @@ async function processCommand() {
 
   if(params["bech32"]) {
     return hexToBech32(params);
+  }
+
+  if(params["nip05"]) {
+    return await nip05ToHex(params.nip05);
   }
 
   if(params.verify) {
