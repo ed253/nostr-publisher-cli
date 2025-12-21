@@ -61,6 +61,14 @@ Or
 
 `nostr-publisher-cli --bech32 --prefix naddr --author xxxxx --slug "my-blog-post" --kind 30023`
 
+### Resolve a NIP-05 username
+
+`nostr-publisher-cli --nip05 bob@example.com`
+
+Returns:
+
+`npub in hex format`
+
 ### Fetch a note by ID
 
 `nostr-publisher-cli --relay relay.nostr.band --fetch notes --note note123456789`
@@ -71,7 +79,7 @@ Or
 
 ### Fetch notes by author
 
-`nostr-publisher-cli --relay relay.nostr.band --fetch notes --author npub123456789 --since 123456789 --limit 10`
+`nostr-publisher-cli --relay relay.nostr.band --fetch notes --author npub123456789 --since 10000000 --until 123456789 --limit 10`
 
 ### Fetch notes by search terms
 
@@ -97,49 +105,53 @@ Or
 
 View your article in your browser with nostr-multimedia:
 
-https://nostr-multimedia.netlify.app/markdown/nos.lol/naddr1qqfxy6t5vdhkjm3dwa5xjar9wpshqetjqgsp6ppesc0wf3q3c3qh7g74yzytc297xdn6f66lqgv2mv03exlmcwsrqsqqqa28dd8gcl
+https://nostr-multimedia.netlify.com/markdown/nos.lol/naddr1qqfxy6t5vdhkjm3dwa5xjar9wpshqetjqgsp6ppesc0wf3q3c3qh7g74yzytc297xdn6f66lqgv2mv03exlmcwsrqsqqqa28dd8gcl
 
-### Upload a HTML page
+### Upload a static website, HTML page, image or file
 
-`nostr-publisher-cli --relay relay.nostr.band --publish html --slug "my-webpage" --title "My Webpage" --file my_webpage.html`
+`nostr-publisher-cli --relay relay.nostr.band --publish web --file my_webpage.html`
 
-View your HTML page in your browser with nostr-multimedia:
+Or
 
-https://nostr-multimedia.netlify.app/html/nos.lol/naddr1qq9xummnw3ez6urpvajsygqaqsucv8hycsgugstly02jpz9u9zlrxeayad0syx9dk8cun0au8gpsgqqqw4rsz30n4m/
+`nostr-publisher-cli --relay relay.nostr.band --publish web --file logo.png`
 
-Note: Currently there is no HTML page kind. Kind 30023 is used for now (so that you can edit your HTML page later). This is not optimal because it could spam blogging clients.
+If you want to publish all files in a directory:
 
-### Upload a file, such as an image
+`find /var/www/nostr/ -type f -maxdepth 1 -exec nostr-publisher-cli --relay relay.nostr.band --publish web --file {} \;`
 
-`nostr-publisher-cli --relay relay.nostr.band --publish file --file my_image.png`
+View your webpage in your browser with nostr-multimedia:
 
-Files are automatically converted to base64 data URIs. 
+https://nostr-multimedia.netlify.com/web/nos.lol/ed253@nostrcheck.me/test.html
 
-View your file in your browser with nostr-multimedia:
+Or
 
-https://nostr-multimedia.netlify.app/file/nos.lol/note1wqvk97jzp5nqxt79vy3rj3ts8pxp7z4sqhznh6sjj0txjjcdj28qrlp7m7/image.png
+https://nostr-multimedia.netlify.com/web/nos.lol/ed253@nostrcheck.me/logo.png
 
-Display an image in a Nostr note using Markdown:
+**Kind 30080**
 
-`![https://nostr-multimedia.netlify.app/file/nos.lol/note1wqvk97jzp5nqxt79vy3rj3ts8pxp7z4sqhznh6sjj0txjjcdj28qrlp7m7/image.png](My image)`
+Kind 30080 is an experimental kind for static websites
 
-Display an image on your website using HTML:
+It looks like
 
-`<img src="https://nostr-multimedia.netlify.app/file/nos.lol/note1wqvk97jzp5nqxt79vy3rj3ts8pxp7z4sqhznh6sjj0txjjcdj28qrlp7m7/image.png" alt="My image">`
+`["EVENT",{"id":"xxxx","pubkey":"xxxx","created_at":100000000,"kind":30080,"tags":[["d","test.html"],["published_at","100000000"]],"content":"data:text/html;base64,PGh0bWw+CiAgPGhlYWQ+[...]PC9odG1sPg==","sig":"xxxx"}]`
 
-Note: Currently there is no base64 file kind. Kind 1 is used for now. This is not optimal because it could spam social media clients.
+- Replaceable addressable event, only the newest file is saved
+- `content` must be the Data URI of the HTML/image/CSS/JS file (must be base64-encoded and include the mime type)
+- `content` may be any length, but relays generally limit content to 64 KB
+- The `d tag` must be the file name
+- Other tags are optional, e.g. `tags` to describe the content
 
-Note: The max content size for Kind 1 notes is usually 64 KB.
+With a shorter URL and default relay, Nostr webpages could look something like: https://nostr.site/bob@nostr.me/projects.html
+
+You can view Kind 30080 with [nostr-multimedia](https://github.com/ed253/nostr-multimedia)
+
+Not all relays accept arbitrary kinds, but nos.lol works for now
 
 ### Delete a note
 
 `nostr-publisher-cli --relay relay.nostr.band --publish delete --note note123456789`
 
 Relays may or may not honor the deletion.
-
-## Support
-
-If you have a NIP for HTML pages or small base64 files, let me know and I'll add your note kind and parameters.
 
 ## Tips
 
