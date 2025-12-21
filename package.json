@@ -1,6 +1,6 @@
 {
   "name": "nostr-publisher-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fetch and publish notes from Nostr using the commandline",
   "license": "MIT",
   "author": "ed253",
